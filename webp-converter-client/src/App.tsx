@@ -28,9 +28,6 @@ export default function App() {
         onDrop,
         accept: {'image/jpeg': ['.jpg', '.jpeg']},
         multiple: true,
-        onDragEnter: undefined,
-        onDragOver: undefined,
-        onDragLeave: undefined
     })
 
     const convertFiles = async () => {
@@ -85,11 +82,9 @@ export default function App() {
         }
     }
 
-    // @ts-ignore
     return (
         <div>
             <div {...getRootProps()} style={dropzoneStyle}>
-                {/* @ts-ignore */}
                 <input {...getInputProps()} />
                 <p>Arrastra imágenes JPG aquí o haz clic para seleccionar</p>
             </div>
