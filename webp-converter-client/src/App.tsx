@@ -1,8 +1,6 @@
-import FileDropzone from '@/components/features/FileConverter/FileDropzone.tsx';
-import FileList from '@/components/features/FileConverter/FileList.tsx';
-import ConvertButton from '@/components/features/FileConverter/ConvertButton.tsx';
 import { Box, Heading, Stack } from '@chakra-ui/react';
 import { Toaster } from '@/components/ui/toaster.tsx';
+import { ConvertButton, FileDropzone, FileList } from '@/components/features/FileConverter';
 
 export default function App() {
   return (
