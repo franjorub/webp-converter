@@ -5,7 +5,10 @@
   "scripts": {
     "dev:client": "cd webp-converter-client && npm run dev",
     "dev:server": "cd webp-converter-server && npm run dev",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "install:client": "cd webp-converter-client && npm install",
+    "install:server": "cd webp-converter-server && npm install",
+    "postinstall": "concurrently \"npm run install:client\" \"npm run install:server\""
   },
   "private": true,
   "devDependencies": {
