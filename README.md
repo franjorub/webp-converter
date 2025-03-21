@@ -36,9 +36,8 @@ WebP Converter is a friendly, easy-to-use tool that helps you convert your image
 
 ## How to Use
 1. Drag and drop your images onto the designated area
-2. Select conversion options (if available)
-3. Click the "Convert" button
-4. Download your newly converted WebP images!
+2. Click the "Convert" button
+3. Download your newly converted WebP images!
 
 ## Contributing
 Contributions are always welcome! Feel free to open an issue or submit a pull request.
