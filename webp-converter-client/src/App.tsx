@@ -2,6 +2,7 @@ import FileDropzone from '@/components/features/FileConverter/FileDropzone.tsx';
 import FileList from '@/components/features/FileConverter/FileList.tsx';
 import ConvertButton from '@/components/features/FileConverter/ConvertButton.tsx';
 import { Heading, Stack } from '@chakra-ui/react';
+import { Toaster } from '@/components/ui/toaster.tsx';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <FileList />
         <ConvertButton />
       </Stack>
+      <Toaster />
     </div>
   );
 }

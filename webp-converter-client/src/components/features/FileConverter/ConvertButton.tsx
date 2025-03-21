@@ -1,9 +1,10 @@
 import { useFileStore } from '@/store';
 import { Button } from '@chakra-ui/react';
 import { useState } from 'react';
-import axios, { AxiosProgressEvent } from 'axios';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
+import { useWebpConverter } from '@/api/webpConverter.ts';
+import { toaster } from '@/components/ui/toaster.tsx';
 
 export default function ConvertButton() {
   const files = useFileStore(state => state.files);
@@ -11,40 +12,36 @@ export default function ConvertButton() {
 
   const [converting, setConverting] = useState(false);
 
+  const webpClient = useWebpConverter();
+
   const convertFiles = async () => {
     setConverting(true);
-    const convertedFiles: Array<{ name: string; data: ArrayBuffer }> = [];
+    const convertedFiles: Array<{ name: string; data: Blob }> = [];
 
     try {
       await Promise.all(
         files.map(async fileState => {
-          const formData = new FormData();
-          formData.append('image', fileState.file);
-
-          const response = await axios.post<ArrayBuffer>(
-            'http://localhost:3001/convert',
-            formData,
-            {
-              responseType: 'arraybuffer',
-              onUploadProgress: (progressEvent: AxiosProgressEvent) => {
-                const progress = Math.round(
-                  (progressEvent.loaded * 100) / (progressEvent.total ?? 1)
-                );
-                updateFileProgress(fileState.id, progress);
-              },
-            }
-          );
+          const response = await webpClient.convertToWebp(fileState.file, {
+            onUploadProgress: progressEvent => {
+              updateFileProgress(fileState.id, (progressEvent.progress ?? 0) * 100);
+            },
+          });
 
           convertedFiles.push({
             name: fileState.file.name.replace(/\.jpe?g$/, '.webp'),
-            data: response.data,
+            data: response as Blob,
           });
         })
       );
 
+      toaster.create({
+        description: 'Conversion completed',
+        type: 'success',
+      });
+
       if (convertedFiles.length === 1) {
         const file = convertedFiles[0];
-        saveAs(new Blob([file.data]), file.name);
+        saveAs(file.data, file.name);
       } else {
         const zip = new JSZip();
         convertedFiles.forEach(file => {
@@ -56,7 +53,10 @@ export default function ConvertButton() {
     } catch (error) {
       console.error('Conversion error:', error);
       if (error instanceof Error) {
-        // Manejar error específico si es necesario
+        toaster.create({
+          description: error.message,
+          type: 'error',
+        });
       }
     } finally {
       setConverting(false);

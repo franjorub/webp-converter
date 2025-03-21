@@ -25,7 +25,7 @@ export default function FileDropzone() {
           <LuUpload />
         </Icon>
         <FileUpload.DropzoneContent>
-          <Box>Drag and drop files here</Box>
+          <Box>Drag and drop files here. Max 100</Box>
           <Box color="fg.muted">.jpg, .jpeg up to 5MB</Box>
         </FileUpload.DropzoneContent>
       </FileUpload.Dropzone>

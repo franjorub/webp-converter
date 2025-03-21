@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "This is an open source webp converter",
   "scripts": {
-    "start:client": "cd webp-converter-client && npm run dev",
-    "start:server": "cd webp-converter-server && npm run dev",
-    "dev": "concurrently \"npm run start:client\" \"npm run start:server\""
+    "dev:client": "cd webp-converter-client && npm run dev",
+    "dev:server": "cd webp-converter-server && npm run dev",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
   },
   "private": true,
   "devDependencies": {
