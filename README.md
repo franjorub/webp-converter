@@ -12,7 +12,7 @@ WebP Converter is a friendly, easy-to-use tool that helps you convert your image
 
 ## Getting Started
 ### Prerequisites
-- Node.js (version 16 or newer)
+- Node.js (version 22.14.0 or newer)
 - npm package manager
 
 ### Installation

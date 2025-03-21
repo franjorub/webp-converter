@@ -13,5 +13,9 @@
   "private": true,
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=22.14.0",
+    "npm": ">=10.9.2"
   }
 }
